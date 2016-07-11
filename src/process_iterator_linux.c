@@ -23,7 +23,7 @@
 
 static int get_boot_time()
 {
-	int uptime = 0;
+	int uptime;
 	FILE *fp = fopen ("/proc/uptime", "r");
 	if (fp != NULL)
 	{
@@ -103,7 +103,7 @@ static int read_process_info(pid_t pid, struct process *p)
 		return -1;
 	}
 	fclose(fd);
-	strcpy(p->command, buffer);
+	sscanf(buffer, "%s", p->command);
 	return 0;
 }
 
